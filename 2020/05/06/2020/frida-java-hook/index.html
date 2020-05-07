@@ -477,7 +477,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.5k
                 </div>
                 
 
@@ -629,6 +629,29 @@
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">","</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"岁，是个学生。"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后写一个 <code>Inner</code> 类，在里面写两个内部类：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>myapplication<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author yuan
+ * @version 1.0
+ * @date 2020/5/7 23:16
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Inner</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">B</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>导出 APK 并安装到夜神模拟器，测试运行：</p>
 <p><img src="Toast.png" alt="测试运行，点击按钮后弹出Toast"></p>
 <h2 id="Java-层操作总结"><a href="#Java-层操作总结" class="headerlink" title="Java 层操作总结"></a>Java 层操作总结</h2><h3 id="获取重载方法"><a href="#获取重载方法" class="headerlink" title="获取重载方法"></a>获取重载方法</h3><p>如果要获取对应某个方法名的所有重载方法，可以使用语句 <code>ClassName.methodName.overloads</code>。</p>
@@ -704,6 +727,15 @@
 <p>运行结果：</p>
 <p><img src="call.png" alt="调用对象方法"></p>
 <p>网上许多资料提到需要使用 <code>method.setAccessible(true)</code> 的方式设置私有方法的可访问性，我实际测试时并不需要使用 Java 中的反射写法，可能是新版的 Frida 在这方面做了一些优化。</p>
+<h3 id="获取内部类"><a href="#获取内部类" class="headerlink" title="获取内部类"></a>获取内部类</h3><p>内部类的获取也是使用 <code>Java.use(className)</code>，只需注意类名形式为 <code>OuterClass$InnerClass</code> 即可。匿名内部类需要使用 <code>OuterClass$number</code> 的形式来获取。</p>
+<p>下面的代码获取了类 <code>Inner</code> 的两个内部类 <code>A</code>、<code>B</code> 和继承了 <code>HashMap</code> 的匿名内部类 <code>$1</code>。</p>
+<pre class="line-numbers language-js"><code class="language-js">Java<span class="token punctuation">.</span><span class="token function">performNow</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Java<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'com.example.myapplication.Inner$A'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Java<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'com.example.myapplication.Inner$B'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Java<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'com.example.myapplication.Inner$1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行结果：</p>
+<p><img src="inner.png" alt="获取内部类"></p>
 <h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>使用 <code>Java.cast(object,Class)</code> 可以转换一个对象的类型。</p>
 <p>下面的代码将 <code>Student</code> 对象强制转换成了 <code>Object</code> 类型，然后再次转回 <code>Student</code> 类型：</p>
 <pre class="line-numbers language-js"><code class="language-js">Java<span class="token punctuation">.</span><span class="token function">performNow</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1480,7 +1512,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">60.4k</span>&nbsp;字
+                class="white-color">60.6k</span>&nbsp;字
             
             
             

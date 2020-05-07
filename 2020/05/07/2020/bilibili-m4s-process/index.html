@@ -491,7 +491,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>这两天在 B 站看到一些 JS 逆向方面的视频，因为一时半会儿看不完，而且怕过段时间视频会被删，我就把视频全部缓存了。</p>
-<p>结果拉到电脑上一看，B 站缓存已经不再用 blv 格式了，改用了 m4s 分别保存音频和视频。虽然搞不懂为什么 B 站要搞这种无聊的事情，但既然它已经这么干了，我就只能写个程序批量把视频合成为 flv 文件了。</p>
+<p>结果拉到电脑上一看，B 站缓存已经不再用 blv 格式了，改用了 m4s 分别保存音频和视频。虽然搞不懂为什么 B 站要搞这种无聊的事情，但既然它已经这么干了，我就只能写个程序批量合并音视频了。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载好 FFmpeg，配置好环境变量，然后测试一下在 java 中能否正常调用 FFmpeg：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
     ProcessBuilder builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProcessBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1524,7 +1524,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">60.4k</span>&nbsp;字
+                class="white-color">60.6k</span>&nbsp;字
             
             
             
