@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="毕设开发记录(0)：开题报告, Java,逆向,爬虫,JS逆向">
+    <meta name="keywords" content="JavaOpenCV学习笔记（1）：环境配置与图片读取展示, Java,逆向,爬虫,JS逆向">
     <meta name="description" content="我们的世界值得我们为之奋斗。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>毕设开发记录(0)：开题报告 | 远叔写Bug</title>
+    <title>JavaOpenCV学习笔记（1）：环境配置与图片读取展示 | 远叔写Bug</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">毕设开发记录(0)：开题报告</h1>
+                    <h1 class="description center-align post-title">JavaOpenCV学习笔记（1）：环境配置与图片读取展示</h1>
                 </div>
             </div>
         </div>
@@ -439,8 +439,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">
-                                <span class="chip bg-color">个人项目</span>
+                            <a href="/tags/OpenCV/">
+                                <span class="chip bg-color">OpenCV</span>
                             </a>
                         
                     </div>
@@ -451,8 +451,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%85%B6%E5%AE%83/" class="post-category">
-                                其它
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -464,7 +464,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-27
+                    2020-05-11
                 </div>
                 
 
@@ -473,7 +473,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    748
                 </div>
                 
 
@@ -490,74 +490,167 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>不知不觉马上就要 4 月了，到现在毕业设计还只做了一点点，加上最近几周一直在玩游戏，连之前写的那一点点代码都看不懂了。反正之前写的那一点写得也很烂，干脆重新做好了。后面的日子要勒紧了，顺便写下博客记录一下关键内容吧。开题报告也直接贴上来吧。</p>
-<blockquote>
-<p>胡适之啊胡适之!你怎么能如此堕落!先前订下的学习计划你都忘了吗?子曰:“吾日三省吾身。”不能再这样下去了!</p>
-</blockquote>
-<hr>
+                <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>首先到<a href="https://opencv.org/releases/" target="_blank" rel="noopener">官网</a>下载 OpenCV。</p>
+<p>解压后，进入 <code>/build/java</code> 目录，将 jar 包和对应系统版本的 dll 复制到项目中。</p>
+<p><img src="lib.png" alt="项目结构"> </p>
+<p>把 jar 包添加到构建路径，然后在 vm 参数中加入 <code>-Djava.library.path=$PROJECT_DIR$\lib\opencv</code> 完成环境配置。</p>
+<p>使用 《OpenCV 3.0 Computer Vision with Java》 中的例子来测试环境是否配置成功：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> opencv<span class="token punctuation">;</span>
 
-<h2 id="设计题目"><a href="#设计题目" class="headerlink" title="设计题目"></a>设计题目</h2><p>基于网络爬虫的网站页面更新监测系统</p>
-<h2 id="设计的目的及意义"><a href="#设计的目的及意义" class="headerlink" title="设计的目的及意义"></a>设计的目的及意义</h2><h3 id="设计背景"><a href="#设计背景" class="headerlink" title="设计背景"></a>设计背景</h3><p>随着互联网上信息的爆炸式增长，人们对信息聚合和信息检索的需求也日益提升。为了满足用户的信息获取需求，分类目录、门户网站、搜索引擎、新闻资讯推送应用等服务陆续诞生。</p>
-<p>分类目录是一种导航网站，以国外的 Yahoo 和国内的 hao123 为代表。这种网站通过人工整理的方式把各种各样的高质量网站分类整理 $^{[1]}$，以黄页的形式罗列出来，供用户自行查找和跳转。这种服务只适合桌面端用户，且仅能用作导航，已无法满足当今用户对简便性和高效性的需求。</p>
-<p>门户网站是一种提供综合性互联网信息资源的应用系统，国内的新浪、网易、搜狐等网站均属此类。这类服务的主要缺点是内容需要编辑人员人工维护，并且信息过于繁杂，需要用户自行过滤不感兴趣的内容。门户网站的全站主页和各分类主页更新频率较高，用户在访问时只能看到最新的推荐内容，需要花费较多的时间才能找到历史信息。</p>
-<p>搜索引擎是一种在万维网上搜集并组织信息然后供用户查询的软件系统 $^{[1],[2]}$，它允许用户有目的性地通过关键词查询所需的信息。常见的搜索引擎主要有通用搜索引擎、垂直搜索引擎和元搜索引擎。通用搜索引擎在收录信息时，考虑的是信息的综合价值，而不会考虑用户的潜在兴趣，有用信息含量较低，无法满足用户的专门性、针对性检索需求。同时，如果查询关键词存在多种语义，通用搜索引擎的用户必须自行分辨和筛选查得的信息。垂直搜索引擎专注于特定领域或特定类型的信息 $^{[3]}$，是专为查询某一学科或主题的信息而产生的查询工具。相比通用搜索引擎，垂直搜索引擎在查询准确率和查询深度上都具有很大的优势。然而，垂直搜索引擎面向的是特定的领域或主题，仍然无法满足用户的个性化信息需求。元搜索引擎则是一种将用户查询提交到其它搜索引擎并将结果汇总的搜索引擎 $^{[4]}$，其检索结果的质量在很大程度上受到其它搜索引擎的掣肘。</p>
-<p>新闻资讯推送应用是移动互联时代的最重要信息获取工具之一，2017、2018 两年中新闻资讯类应用的用户总增量接近 2.3 亿 $^{[5]}$。其中，以今日头条为代表的内容聚合分发平台采用大数据技术 $^{[6]}$，根据用户的兴趣、行为、地理位置等信息，结合文本分类、文本聚类、用户画像、协同过滤等算法和技术，为用户提供个性化推送服务 $^{[7]}$。这些应用所提供的推送服务往往存在内容同质化、信源窄化、噪声敏感等问题 $^{[7],[8],[9]}$，无法区分用户的长期兴趣、短期兴趣和潜在兴趣，也不能准确地跟踪用户的兴趣迁移。新闻资讯类应用，尤其是具有个性化推送服务的移动端应用，在继承了门户网站优点的基础上，弥补了门户网站在便捷性和个性化上的缺陷，但其检索能力远不如搜索引擎。</p>
-<p>上述几种信息服务，在一定程度上可以满足用户的部分信息获取需求。其中，搜索引擎是相对最高效的主动信息获取工具，而个性化新闻资讯推送应用则是相对最友好的被动信息获取工具。然而，这些信息服务都无法很好地满足用户在一段时间内跟踪指定兴趣点的需求，用户也无法自行指定信息来源。换言之，当今的信息服务仍未能很好地满足用户自定义信息获取规则的需求，这方面存在研究和开拓的空间。</p>
-<p>假如结合垂直搜索引擎与个性化新闻资讯推送应用的优点，根据用户指定的规则进行信息采集和信息推送，就可以在一定程度上解决上述问题。针对该问题，本设计将信息获取简化为网页内容获取，设计和开发一个用户可定义规则的、面向网页信息采集和推送的软件系统。</p>
-<h3 id="目的与意义"><a href="#目的与意义" class="headerlink" title="目的与意义"></a>目的与意义</h3><h3 id="1-自动化监控网站页面变更，解决小场景下的用户痛点"><a href="#1-自动化监控网站页面变更，解决小场景下的用户痛点" class="headerlink" title="1. 自动化监控网站页面变更，解决小场景下的用户痛点"></a>1. 自动化监控网站页面变更，解决小场景下的用户痛点</h3><p>假如用户需要人工监控某个或某群网站的页面增加、页面删除、页面内容更改，就需要付出大量人力反复进行页面访问、页面内容比对等工作，工作量将随网站规模的增大而急剧增长，其成本十分昂贵，监控质量也无法得到保障。针对这一场景，设计一个网站页面更新监控系统，自动采集目标网站数据，并捕获网页的变更信息和特征信息，若发现网站或独立页面发生了用户感兴趣的更新，就通过邮件、短信等方式通知用户。该系统不仅可以免除人工访问页面和对比数据之劳，更可以根据用户设定的规则有选择地将页面变更信息推送给用户。</p>
-<p>基于网络爬虫的网站页面更新监控系统不仅能实现监控指定网站或独立页面更新的功能，如果以类似搜索引擎的工作方式遍历指定范围内的可访问页面，并提取这些页面的内容，实际上也可以提供搜索服务。因此，该系统实际上可以充当一个针对特定范围信息的搜索引擎，其搜索服务介于通用搜索引擎和垂直搜索引擎之间，同时能够提供可定制的信息推送服务。另一方面，通过网络爬虫从不同页面获取的内容，在经过处理后，也可以系统</p>
-<p>单从页面监控的角度来看，该系统的应用场景包括但不仅限于网页防篡改监控、产品价格跟踪、连载作品更新跟踪、公示公告信息跟踪、留言评论提醒等；若考虑附带的搜索服务，则可以为用户带来信源可定制的信息获取能力。</p>
-<h3 id="2-由点及面，探索信息服务发展可能"><a href="#2-由点及面，探索信息服务发展可能" class="headerlink" title="2. 由点及面，探索信息服务发展可能"></a>2. 由点及面，探索信息服务发展可能</h3><p>该系统是一个检索与推送相结合的信息服务软件系统，兼具搜索引擎与信息推送应用的部分特点，能同时提供主动和被动的信息服务。尽管该系统面向的内容载体是网站页面，但网页与其它信息形式并没有本质的区别，该系统所探究的可定制化信息服务能在细化场景下为用户带来更好的体验，是一个有价值的信息服务发展方向。如今，各行各业都在寻求在细分领域下的发展 $^{[10]-[14]}$，本设计所关注的应用场景，加以扩展后就是一个可开拓的细分领域。通过设计和实现一个提供搜索功能的网站页面更新监测系统，得以一叶知秋，探索兼具监控与搜索功能的信息服务的发展可能。</p>
-<h2 id="基本内容和技术方案"><a href="#基本内容和技术方案" class="headerlink" title="基本内容和技术方案"></a>基本内容和技术方案</h2><h3 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h3><ul>
-<li>定时爬取并存储指定网站或页面的数据。</li>
-<li>捕获页面的变更信息及特征信息。</li>
-<li>发现用户感兴趣的页面变更信息时通知用户。</li>
-<li>提供对已存储数据的搜索功能。</li>
-</ul>
-<h3 id="目标期望"><a href="#目标期望" class="headerlink" title="目标期望"></a>目标期望</h3><ul>
-<li>用自己熟悉的开发工具和数据库完成系统的开发，使人机交互界面简单友好，易于操作。</li>
-<li>提供详尽、规范的开发文档。</li>
-<li>完成 10000 字以上的毕业论文。</li>
-<li>严格遵守毕业设计相应的规范和要求，积极与指导教师沟通，汇报进度，提高毕业设计水平。</li>
-</ul>
-<h3 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h3><h4 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h4><p>如图 1 所示，箭头方向表示发送请求方向，系统由爬虫模块、数据处理模块、页面数据库、任务调度器、搜索模块、推送模块、用户规则库、用户前端共 8 个主要部件组成。</p>
-<p><img src="%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.png" alt="图 1 整体架构"></p>
-<p>其中，任务调度器定时从用户规则库获取用户自定义的信源配置和信息兴趣配置，并控制爬虫模块对用户配置的目标网站或页面进行抓取。爬虫模块抓取到页面数据后，提交到数据处理模块，数据处理模块提取页面的特征信息，并与页面数据库中已存在的页面特征信息进行比对，若页面特征信息存在更新则提交给任务调度器，同时将新的页面特征信息存储到页面数据库。任务调度器接收到页面更新信息后，根据用户定义的规则，决定是否推送给用户，若符合推送规则，则将页面更新信息提交到推送模块，由推送模块通知用户。用户可以通过搜索模块查询页面数据库中已存储的页面特征信息。</p>
-<h4 id="开发技术"><a href="#开发技术" class="headerlink" title="开发技术"></a>开发技术</h4><p>使用 Java 语言完成后端系统的编码。Java 是一门面向对象高级语言，拥有完善的软件生态和活跃的社区环境，允许开发者以优雅的思维方式进行复杂的编程，借助 Java 生态下的开源技术完成系统各模块的开发。使用 Vue 编写用户前端，借助 Web 的跨平台性同时支持桌面端和移动端访问。</p>
-<p>借助 SpringCloud 和 SpringBoot 框架完成系统的搭建，实现各主要组件之间的有序协调。SpringCloud 和 SpringBoot 都是 Java 生态下目前最火热的技术之一，两者相结合，可以大大提高开发效率，让开发者得以方便地整合各种服务，搭建高性能的软件平台 $^{[15]}$。</p>
-<p>使用 ElasticSearch 以文档形式存储页面信息，ElasticSearch 是一个全文搜索引擎，允许用户以 RESTful 接口进行文档操作 $^{[16]}$。使用 IK 分词器对 ElasticSearch 中存储的文档进行中文分词。ElasticSearch提供了高性能的索引服务，使得用户能在毫秒级的时间内完成对大量数据的查询 $^{[17]}$，因此，搜索模块亦可借助 ElasticSearch 来实现。</p>
-<p>使用 MongoDB 存储用户自定义规则等其它非页面信息数据。MongoDB 是一个基于分布式文件存储的列式非关系型数据库，支持复杂的数据类型。用户自定义规则包括关键字包含、关键字组合、更新时间限制、更新文本量限制等复杂逻辑，若采用 MySQL 等关系型数据库，关系表将变得相当复杂和冗余，而使用 MongoDB 则可以使用 BSON 格式来存储数据，使得数据的维护更加容易。</p>
-<p>使用 SpringData 完成对 ElastichSearch 和 MongoDB 的数据操作。SpringData 封装了一系列统一的抽象数据访问接口，允许开发者以相同的方式访问和操作不同的数据源，将开发者从繁复的数据操作中解放出来。由于 ElasticSearch 和 MongoDB 本身的访问方式大不相同，直接使用原生的 Java 来操作会带来许多额外的工作量，而使用 SpringData 则能以优雅的方式解决问题。</p>
-<p>在爬虫模块中，使用 OkHttp 框架进行网络请求的发送，使用最佳优先搜索遍历优先级队列中的链接 $^{[18]}$，该优先级队列使用 RabbitMQ 组件实现，其中优先级采用改良的 Shark-Search 算法进行计算 $^{[19]}$。在数据处理模块中，使用 JSoup 框架实现页面数据的解析，并使用 Myers 差分算法实现新旧页面信息的对比 $^{[20]}$。在推送模块中，使用电子邮件服务实现邮件通知，并使用 JavaScript Web Notification API 实现浏览器的消息推送。</p>
-<h3 id="进度安排"><a href="#进度安排" class="headerlink" title="进度安排"></a>进度安排</h3><ul>
-<li>2 月 28 日之前：结合选题和任务书的目标要求，完成开题报告的撰写；</li>
-<li>2 月 29 日至 3 月 22 日：学习系统开发所需的各项技术，并完成后端系统的部分开发；</li>
-<li>3 月 23 日至 4 月 15 日：完成后端系统的全部开发，并进行主要测试；完成后端系统的文档编写；</li>
-<li>4 月 16 日至 4 月 25 日：完成前端系统开发；</li>
-<li>4 月 25 日至 4 月 30 日：进行系统优化；</li>
-<li>5 月 1 日至 5 月 25 日：撰写及修改毕业论文；</li>
-<li>5 月 26 日至 6 月 5 日：准备答辩。</li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 张俊林.这就是搜索引擎 核心技术详解[M].北京:电子工业出版社,2012.</p>
-<p>[2] 宋春阳,金可音.Web搜索引擎技术综述[J].现代计算机(专业版),2008(05):82-85.</p>
-<p>[3] 王文钧,李巍.垂直搜索引擎的现状与发展探究[J].情报科学,2010,28(03):477-480.</p>
-<p>[4] 李广建,黄崑.元搜索引擎及其主要技术[J].情报科学,2002(02):175-179.</p>
-<p>[5] 马俊华. 新闻资讯类APP的用户体验研究[D].长春工业大学,2019.</p>
-<p>[6] 熊敏 . 内容智能分发平台对新闻传播的价值创新分析——以“今日头条”为例［J］. 编辑学刊，2017（02）：94-99.</p>
-<p>[7] 宋佳琳,唐英.大数据背景下个性化新闻推送的问题及策略[J].青年记者,2019(35):27-28.</p>
-<p>[8] 沈姝彤.浅析算法推送下的“个性化”新闻传播现状[J].传播力研究,2019,3(15):260.</p>
-<p>[9] 蔡磊平.凸显与遮蔽:个性化推荐算法下的信息茧房现象[J].东南传播,2017(07):12-13.</p>
-<p>[10] 惠州日报记者 冯丽均 李向英. 更多细分市场领域富矿有待深挖[N]. 惠州日报,2019-08-16(A02).</p>
-<p>[11] 吕长顺.从区块链金融、政务、医疗三个细分领域抓住未来的投资机遇[J].财富时代,2019(11):3-5.</p>
-<p>[12] 张媛珍.化妆品冰箱“空降”市场,开辟细分领域新战场[J].电器,2020(02):26-28.</p>
-<p>[13] 吕长顺.硬核科技板块 从科技基金与细分领域中寻找投资机会[J].财富时代,2019(12):13-15.</p>
-<p>[14] 欧鹏飞,冯乾隆.中国汽车市场预测及细分领域市场案例分析[J].汽车实用技术,2019(23):239-244.</p>
-<p>[15] 王方旭.基于Spring Cloud实现业务系统微服务化的设计与实现[J].电子技术与软件工程,2018(08):60-61.</p>
-<p>[16] 王伟,魏乐,刘文清,舒红平.基于ElasticSearch的分布式全文搜索系统[J].电子科技,2018,31(08):56-59+65.</p>
-<p>[17] Chen D, Yi C, Brownlow B N, et al. Real-Time or Near Real-Time Persisting DailyHealthcare Data Into HDFS and ElasticSearch Index Inside a Big Data Platform[J]. IEEE Transactions on Industrial Informatics, 2017, 13(2):595-606.</p>
-<p>[18] Yong-Bin Yu,Shi-Lei Huang,Nyima Tashi, et al.A Survey about Algorithms Utilized by Focused Web Crawler[J].电子科技学刊,2018,16(2):129-138. DOI:10.11989/JEST.1674-862X.70116018.</p>
-<p>[19] 朱庆生,徐宁,周瑜.一种基于链接和内容分析的自适应主题爬虫算法[J].计算机与现代化,2015(09):77-80+89.</p>
-<p>[20] Nugroho Y S , Hata H , Matsumoto K . How different are different diff algorithms in Git?: Use –histogram for code changes[J]. Empirical Software Engineering, 2019(7).</p>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>opencv<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Core<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>opencv<span class="token punctuation">.</span>core<span class="token punctuation">.</span>CvType<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>opencv<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Mat<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>opencv<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Scalar<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author yuan
+ * @version 1.0
+ * @date 2020/5/11 14:47
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SimpleSample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span><span class="token function">loadLibrary</span><span class="token punctuation">(</span>Core<span class="token punctuation">.</span>NATIVE_LIBRARY_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Welcome to OpenCV "</span> <span class="token operator">+</span> Core<span class="token punctuation">.</span>VERSION<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Mat m <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Mat</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> CvType<span class="token punctuation">.</span>CV_8UC1<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Scalar</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"OpenCV Mat: "</span> <span class="token operator">+</span> m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Mat mr1 <span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token function">row</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mr1<span class="token punctuation">.</span><span class="token function">setTo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scalar</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Mat mc5 <span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mc5<span class="token punctuation">.</span><span class="token function">setTo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scalar</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"OpenCV Mat data:\n"</span> <span class="token operator">+</span> m<span class="token punctuation">.</span><span class="token function">dump</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行结果：</p>
+<pre><code>Welcome to OpenCV 4.3.0
+OpenCV Mat: Mat [ 5*10*CV_8UC1, isCont=true, isSubmat=false, nativeObj=0x1410e70, dataAddr=0x1470080 ]
+OpenCV Mat data:
+[  0,   0,   0,   0,   0,   5,   0,   0,   0,   0;
+   1,   1,   1,   1,   1,   5,   1,   1,   1,   1;
+   0,   0,   0,   0,   0,   5,   0,   0,   0,   0;
+   0,   0,   0,   0,   0,   5,   0,   0,   0,   0;
+   0,   0,   0,   0,   0,   5,   0,   0,   0,   0]
+</code></pre><p>说明环境配置成功。</p>
+<h2 id="图片读取"><a href="#图片读取" class="headerlink" title="图片读取"></a>图片读取</h2><p>使用 <code>Imgcodecs.imread(String fileName)</code> 或 <code>Imgcodecs.imread(String fileName, int readMod)</code> 即可完成图片读取。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ImageRead</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String IMAGE_PATH <span class="token operator">=</span> <span class="token string">"D:/test/Amiya.jpg"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span><span class="token function">loadLibrary</span><span class="token punctuation">(</span>Core<span class="token punctuation">.</span>NATIVE_LIBRARY_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 读取灰度图</span>
+        Mat amiya <span class="token operator">=</span> Imgcodecs<span class="token punctuation">.</span><span class="token function">imread</span><span class="token punctuation">(</span>IMAGE_PATH<span class="token punctuation">,</span> Imgcodecs<span class="token punctuation">.</span>IMREAD_GRAYSCALE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>amiya<span class="token punctuation">.</span><span class="token function">width</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>amiya<span class="token punctuation">.</span><span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看 <code>Imgcodecs</code> 的源码可知，读取模式有这些：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// C++: enum ImreadModes</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span>
+            IMREAD_UNCHANGED <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+            IMREAD_GRAYSCALE <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            IMREAD_COLOR <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            IMREAD_ANYDEPTH <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            IMREAD_ANYCOLOR <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            IMREAD_LOAD_GDAL <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">,</span>
+            IMREAD_REDUCED_GRAYSCALE_2 <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">,</span>
+            IMREAD_REDUCED_COLOR_2 <span class="token operator">=</span> <span class="token number">17</span><span class="token punctuation">,</span>
+            IMREAD_REDUCED_GRAYSCALE_4 <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">,</span>
+            IMREAD_REDUCED_COLOR_4 <span class="token operator">=</span> <span class="token number">33</span><span class="token punctuation">,</span>
+            IMREAD_REDUCED_GRAYSCALE_8 <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">,</span>
+            IMREAD_REDUCED_COLOR_8 <span class="token operator">=</span> <span class="token number">65</span><span class="token punctuation">,</span>
+            IMREAD_IGNORE_ORIENTATION <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看起来和 python 中的 cv2 库差不多。</p>
+<h2 id="图片展示"><a href="#图片展示" class="headerlink" title="图片展示"></a>图片展示</h2><p>OpenCV 没有为 java 提供图片展示功能，我们可以用 swing 自己写一个图片展示器。</p>
+<p>《OpenCV 3.0 Computer Vision with Java》 中提供了一个 <code>ImageViewer</code> 类，对它稍加改造：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> utils<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>opencv<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Mat<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>swing<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>image<span class="token punctuation">.</span>BufferedImage<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>image<span class="token punctuation">.</span>DataBufferByte<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author yuan
+ * @version 1.0
+ * @date 2020/5/11 16:18
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ImageViewer</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> JLabel imageView<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> JFrame windowFrame<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">ImageViewer</span><span class="token punctuation">(</span>Mat image<span class="token punctuation">,</span> String windowName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setSystemLookAndFeel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">createJFrame</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> windowName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">ImageViewer</span><span class="token punctuation">(</span>Mat image<span class="token punctuation">,</span> String windowName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> show<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> windowName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>show<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame<span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame<span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">createJFrame</span><span class="token punctuation">(</span>Mat image<span class="token punctuation">,</span> String windowName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>imageView <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JLabel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JFrame</span><span class="token punctuation">(</span>windowName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>imageView<span class="token punctuation">,</span> BorderLayout<span class="token punctuation">.</span>CENTER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame<span class="token punctuation">.</span><span class="token function">setDefaultCloseOperation</span><span class="token punctuation">(</span>WindowConstants<span class="token punctuation">.</span>EXIT_ON_CLOSE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Image loadedImage <span class="token operator">=</span> <span class="token function">toBufferedImage</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>imageView<span class="token punctuation">.</span><span class="token function">setIcon</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ImageIcon</span><span class="token punctuation">(</span>loadedImage<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame<span class="token punctuation">.</span><span class="token function">pack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>windowFrame<span class="token punctuation">.</span><span class="token function">setLocationRelativeTo</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">setSystemLookAndFeel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            UIManager<span class="token punctuation">.</span><span class="token function">setLookAndFeel</span>
+                    <span class="token punctuation">(</span>UIManager<span class="token punctuation">.</span><span class="token function">getSystemLookAndFeelClassName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InstantiationException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">UnsupportedLookAndFeelException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Image <span class="token function">toBufferedImage</span><span class="token punctuation">(</span>Mat matrix<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> type <span class="token operator">=</span> BufferedImage<span class="token punctuation">.</span>TYPE_BYTE_GRAY<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>matrix<span class="token punctuation">.</span><span class="token function">channels</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            type <span class="token operator">=</span> BufferedImage<span class="token punctuation">.</span>TYPE_3BYTE_BGR<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> bufferSize <span class="token operator">=</span> matrix<span class="token punctuation">.</span><span class="token function">channels</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> matrix<span class="token punctuation">.</span><span class="token function">cols</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> matrix<span class="token punctuation">.</span><span class="token function">rows</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span>bufferSize<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        matrix<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        BufferedImage image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedImage</span><span class="token punctuation">(</span>matrix<span class="token punctuation">.</span><span class="token function">cols</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> matrix<span class="token punctuation">.</span>
+                <span class="token function">rows</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> targetPixels <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>DataBufferByte<span class="token punctuation">)</span> image<span class="token punctuation">.</span><span class="token function">getRaster</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
+                <span class="token function">getDataBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> targetPixels<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> buffer<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> image<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>测试：</p>
+<pre class="line-numbers language-java"><code class="language-java">ImageViewer imageViewer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ImageViewer</span><span class="token punctuation">(</span>amiya<span class="token punctuation">,</span> <span class="token string">"小驴子"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>运行结果：</p>
+<p><img src="show.png" alt="黑白小驴子"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -601,7 +694,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yuanbug.github.io/2020/03/27/graduation_project/graduation-project-0/">http://yuanbug.github.io/2020/03/27/graduation_project/graduation-project-0/</a>
+                    <a href="http://yuanbug.github.io/2020/05/11/2020/java-opencv-hello/">http://yuanbug.github.io/2020/05/11/2020/java-opencv-hello/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -639,8 +732,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">
-                                    <span class="chip bg-color">个人项目</span>
+                                <a href="/tags/OpenCV/">
+                                    <span class="chip bg-color">OpenCV</span>
                                 </a>
                             
                         </div>
@@ -1071,46 +1164,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/28/graduation_project/graduation-project-1/">
+                <a href="/2020/05/11/2020/java-opencv-hello/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="毕设开发记录(1)：初步设计">
+                        <img src="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/3.jpg" class="responsive-img" alt="JavaOpenCV学习笔记（1）：环境配置与图片读取展示">
                         
-                        <span class="card-title">毕设开发记录(1)：初步设计</span>
+                        <span class="card-title">JavaOpenCV学习笔记（1）：环境配置与图片读取展示</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            万事开头难
+                            又开始写HelloWorld了
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%85%B6%E5%AE%83/" class="post-category">
-                                    其它
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">
-                        <span class="chip bg-color">个人项目</span>
+                    <a href="/tags/OpenCV/">
+                        <span class="chip bg-color">OpenCV</span>
                     </a>
                     
                 </div>
@@ -1124,24 +1219,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/18/2019/ctf-js-game/">
+                <a href="/2020/05/09/2020/frida-so-try/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="一道CTF题的JS逆向">
+                        <img src="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/3.jpg" class="responsive-img" alt="Frida学习笔记（5）：so层Hook尝试">
                         
-                        <span class="card-title">一道CTF题的JS逆向</span>
+                        <span class="card-title">Frida学习笔记（5）：so层Hook尝试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            反反调试，反反格式化
+                            越学习，越明白自己的无知
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
                             </span>
                         <span class="publish-author">
                             
@@ -1158,8 +1253,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JS%E9%80%86%E5%90%91/">
-                        <span class="chip bg-color">JS逆向</span>
+                    <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/">
+                        <span class="chip bg-color">安卓逆向</span>
+                    </a>
+                    
+                    <a href="/tags/Frida/">
+                        <span class="chip bg-color">Frida</span>
                     </a>
                     
                 </div>
@@ -1297,13 +1396,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
