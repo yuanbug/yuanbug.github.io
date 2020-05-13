@@ -473,7 +473,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    747
+                    780
                 </div>
                 
 
@@ -565,7 +565,8 @@ OpenCV Mat data:
             IMREAD_REDUCED_COLOR_8 <span class="token operator">=</span> <span class="token number">65</span><span class="token punctuation">,</span>
             IMREAD_IGNORE_ORIENTATION <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>看起来和 python 中的 cv2 库差不多。</p>
-<h2 id="图片展示"><a href="#图片展示" class="headerlink" title="图片展示"></a>图片展示</h2><p>OpenCV 没有为 java 提供图片展示功能，我们可以用 swing 自己写一个图片展示器。</p>
+<h2 id="图片展示"><a href="#图片展示" class="headerlink" title="图片展示"></a>图片展示</h2><p>旧版本的 OpenCV 没有为 java 提供图片展示功能，新版本可以使用 <code>HighGui.imshow</code> 来展示图片，调用 <code>imshow</code> 后必须使用 <code>HighGui.waitKey</code> 进行阻塞。</p>
+<p>我们也可以用 swing 自己写一个图片展示器。</p>
 <p>《OpenCV 3.0 Computer Vision with Java》 中提供了一个 <code>ImageViewer</code> 类，对它稍加改造：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> utils<span class="token punctuation">;</span>
 
@@ -648,7 +649,7 @@ OpenCV Mat data:
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>测试：</p>
-<pre class="line-numbers language-java"><code class="language-java">ImageViewer imageViewer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ImageViewer</span><span class="token punctuation">(</span>amiya<span class="token punctuation">,</span> <span class="token string">"小驴子"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java">ImageViewer imageViewer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ImageViewer</span><span class="token punctuation">(</span>amiya<span class="token punctuation">,</span> <span class="token string">"小驴子"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>运行结果：</p>
 <p><img src="show.png" alt="黑白小驴子"></p>
 <script>
