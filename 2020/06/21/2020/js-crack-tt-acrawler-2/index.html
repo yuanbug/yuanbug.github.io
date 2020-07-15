@@ -477,7 +477,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    4.2k
                 </div>
                 
 
@@ -932,7 +932,36 @@ shit <span class="token operator">=</span> <span class="token punctuation">[</sp
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样处理完这一小段代码，之后就可以在控制台中看到 <code>S</code> 的变化了。</p>
 <p><img src="10.png" alt="对大于和有符号右移的跟踪"></p>
-<p>对整个 for 循环中想要追踪的变化用类似的方式进行插桩即可。值得记录的主要有位运算、四则运算、函数调用，像大于、小于、逻辑取反这样的运算可以不作记录。我是手工一处处搞的，其实可以用 AST 批量解决，但需要额外编写程序。完成了状态机的插桩之后，接下来就可以真正开始签名生成过程的分析了。</p>
+<p>对整个 for 循环中想要追踪的变化用类似的方式进行插桩即可。值得记录的主要有位运算、四则运算、函数调用，像大于、小于、逻辑取反这样的运算可以不作记录。</p>
+<p>在插桩过程中，会发现 <code>S[++A] = I.apply(x, C);</code> 这样一句代码。这里显然是在执行函数。可以额外设置一个数组来记录它：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> trance_I <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">tranceI</span><span class="token punctuation">(</span>I<span class="token punctuation">,</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  trance_I<span class="token punctuation">[</span>trance_I<span class="token punctuation">.</span>length<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    fun<span class="token punctuation">:</span> I<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    arg<span class="token punctuation">:</span> args
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>插桩时同时记录到两个数组中：</p>
+<pre class="line-numbers language-js"><code class="language-js">S<span class="token punctuation">[</span><span class="token operator">++</span>A<span class="token punctuation">]</span> <span class="token operator">=</span> I<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> C<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">tranceI</span><span class="token punctuation">(</span>I<span class="token punctuation">,</span><span class="token punctuation">[</span>x<span class="token punctuation">,</span> C<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">tranceS</span><span class="token punctuation">(</span>S<span class="token punctuation">,</span> <span class="token string">'apply '</span> <span class="token operator">+</span> I<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' ('</span> <span class="token operator">+</span> x <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> C <span class="token operator">+</span> <span class="token string">') = '</span> <span class="token operator">+</span> S<span class="token punctuation">[</span>A<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>做完全部插桩处理后，刷新页面，会发现页面卡死，需要等很长时间才能继续运行。这主要是因为复制了太多的 <code>S</code> 数组。</p>
+<p>增加一个全局布尔变量 <code>dcp</code>，设置为 <code>false</code>，然后改写一下 <code>tranceS</code>：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">tranceS</span><span class="token punctuation">(</span>S<span class="token punctuation">,</span> mark<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  trance_S<span class="token punctuation">[</span>trance_S<span class="token punctuation">.</span>length<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    S<span class="token punctuation">:</span> dcp <span class="token operator">?</span> <span class="token function">deepClone</span><span class="token punctuation">(</span>S<span class="token punctuation">)</span> <span class="token punctuation">:</span> S<span class="token punctuation">,</span>
+    mark<span class="token punctuation">:</span> mark
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样，初始情况下会使用浅拷贝。在需要深拷贝的时候再将 <code>dcp</code> 设置为 <code>true</code> 即可。</p>
+<p>最后再写一个用于清空三个记录数组的函数：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">cleanTrance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  trance_fun <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  trance_S <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  trance_I <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对整个 for 循环中的各处 <code>S</code> 赋值，我是手工一处处搞的（反正也不多），其实也可以用 AST 批量解决，但需要额外编写程序。完成了状态机的插桩之后，之后就可以真正开始签名生成过程的分析了。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1509,24 +1538,24 @@ shit <span class="token operator">=</span> <span class="token punctuation">[</sp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/20/2020/js-crack-tt-acrawler-1/">
+                <a href="/2020/06/21/2020/js-crack-tt-acrawler-3/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/13.jpg" class="responsive-img" alt="某条反爬JS分析（1）：准备工作">
+                        <img src="https://cdn.jsdelivr.net/gh/yuanbug/yuanbug.github.io/medias/featureimages/11.jpg" class="responsive-img" alt="某条反爬JS分析（3）：签名算法分析（一）">
                         
-                        <span class="card-title">某条反爬JS分析（1）：准备工作</span>
+                        <span class="card-title">某条反爬JS分析（3）：签名算法分析（一）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            解君罗裳
+                            渐近真相
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
                             </span>
                         <span class="publish-author">
                             
@@ -1701,7 +1730,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">72.7k</span>&nbsp;字
+                class="white-color">74.7k</span>&nbsp;字
             
             
             
